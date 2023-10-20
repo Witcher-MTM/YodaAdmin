@@ -5,7 +5,7 @@ const contactHandler = async (bot, msg) => {
     const chatId = msg.chat.id;
     const contact = msg.contact
     const phoneNumber = contact.phone_number;
-    const user = await getData(`${process.env.API_URL}/user/${phoneNumber}`)
+    const user = await getData(`${process.env.API_URL}/user/${phoneNumber.replace(/\+/g, '')}`)
     console.log(user)
     if (user) {
         bot.sendMessage(chatId, `Thanks for trust`);
