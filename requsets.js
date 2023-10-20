@@ -56,7 +56,7 @@ const updateData = async (url, object) =>{
               },
             body: await JSON.stringify(object)
         })
-        return result;
+        return await (result).json();
     }
     catch(err){
         console.error(err);
