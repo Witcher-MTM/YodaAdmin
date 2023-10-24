@@ -26,7 +26,7 @@ const saveLink = async (bot, msg) => {
     bot.sendMessage(msg.chat.id, `created\nLink:${result.link}\nRegion:${result.region}`,options)
 }
 const updateLink = async (bot, msg) => {
-    data['link'] = msg.text
+    link = msg.text
     const date = new Date()
     const formattedDate = date.toLocaleDateString('ru-RU', {
         year: 'numeric',
@@ -35,7 +35,7 @@ const updateLink = async (bot, msg) => {
     }).replace(/\./g, '-');
     data['datetime'] = formattedDate
     console.log('upd\n', data, link_id)
-    result = await updateData(`${process.env.API_URL}/link/${link_id}`, data)
+    result = await updateData(`${process.env.API_URL}/link/${link_id}`, {link:link})
     const mainKeyboard = await getMainKeyboard();    
     const options = {
         reply_markup: JSON.stringify(mainKeyboard)
